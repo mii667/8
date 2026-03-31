@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>セルフイメージ更新 7日間ワーク</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --sage: #7c9e8a;
+      --sage-light: #a8c4b3;
+      --sage-pale: #eaf2ed;
+      --sage-ultra: #f4f9f6;
+      --cream: #fdf9f4;
+      --warm: #f5ede0;
+      --warm2: #ede0cf;
+      --brown: #6b5344;
+      --brown-light: #a0826d;
+      --text: #2d2416;
+      --text-light: #6b6057;
+      --gold: #c9a96e;
+      --pink: #e8a0b0;
+      --pink-deep: #c2607a;
+    }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ===== COVER ===== */
+    .cover {
+      background: linear-gradient(160deg, #2d3a2e 0%, #3d4f3e 40%, #2a3a2b 100%);
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover-texture {
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(ellipse at 30% 20%, rgba(168,196,179,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(201,169,110,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .leaf-deco {
+      position: absolute;
+      opacity: 0.06;
+      font-size: 200px;
+      line-height: 1;
+      top: -20px; right: -30px;
+      transform: rotate(20deg);
+      pointer-events: none;
+    }
+
+    .leaf-deco2 {
+      position: absolute;
+      opacity: 0.04;
+      font-size: 140px;
+      bottom: 20px; left: -20px;
+      transform: rotate(-15deg);
+      pointer-events: none;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      border: 1px solid rgba(168,196,179,0.4);
+      color: var(--sage-light);
+      font-size: 10px;
+      letter-spacing: 3px;
+      padding: 5px 18px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      font-weight: 700;
+    }
+
+    .cover-days {
+      font-size: 100px;
+      font-weight: 900;
+      color: rgba(168,196,179,0.15);
+      line-height: 1;
+      letter-spacing: -6px;
+      margin-bottom: -10px;
+    }
+
+    .cover-h1 {
+      font-size: 13px;
+      color: var(--sage-light);
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .cover-h2 {
+      font-size: 28px;
+      font-weight: 900;
+      color: white;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .cover-h2 em {
+      font-style: italic;
+      color: var(--sage-light);
+    }
+
+    .cover-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      line-height: 2;
+      margin-bottom: 36px;
+    }
+
+    .cover-cta {
+      display: inline-block;
+      background: rgba(168,196,179,0.15);
+      border: 1px solid rgba(168,196,179,0.3);
+      color: var(--sage-light);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 12px 28px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .cover-cta:hover {
+      background: rgba(168,196,179,0.25);
+    }
+
+    /* ===== HOW TO ===== */
+    .howto-section {
+      background: var(--sage-pale);
+      padding: 40px 24px;
+    }
+
+    .howto-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .howto-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--sage);
+      margin-bottom: 14px;
+    }
+
+    .howto-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .howto-desc {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 2.1;
+      margin-bottom: 24px;
+    }
+
+    .howto-rules {
+      display: grid;
+      gap: 10px;
+    }
+
+    .howto-rule {
+      background: white;
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      box-shadow: 0 2px 8px rgba(124,158,138,0.1);
+    }
+
+    .rule-num {
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, var(--sage-light), var(--sage));
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .rule-text {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.7;
+      padding-top: 4px;
+    }
+
+    /* ===== PROGRESS ===== */
+    .progress-section {
+      background: white;
+      padding: 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .progress-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .progress-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--sage);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .day-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .day-dot {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: #e8e0d6;
+      transition: background 0.4s;
+      cursor: pointer;
+    }
+
+    .day-dot.done { background: var(--sage); }
+    .day-dot.active { background: var(--sage-light); }
+
+    .progress-text {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 8px;
+    }
+
+    /* ===== DAYS ===== */
+    .days-section {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 28px 16px 0;
+    }
+
+    /* ===== DAY CARD ===== */
+    .day-card {
+      border-radius: 22px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s;
+    }
+
+    .day-card:hover { box-shadow: 0 8px 32px rgba(124,158,138,0.15); }
+
+    /* カードヘッダー */
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 22px;
+      cursor: pointer;
+      background: white;
+      transition: background 0.2s;
+    }
+
+    .day-header:hover { background: var(--sage-ultra); }
+    .day-card.open .day-header { background: var(--sage-pale); }
+
+    .day-circle {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 2px solid;
+      transition: all 0.3s;
+    }
+
+    .d1 .day-circle { border-color: #a8c4b3; background: #eaf2ed; }
+    .d2 .day-circle { border-color: #b8c9a3; background: #f0f4ea; }
+    .d3 .day-circle { border-color: #c9a96e; background: #f8f2e8; }
+    .d4 .day-circle { border-color: #e8a0b0; background: #fdf0f3; }
+    .d5 .day-circle { border-color: #9ab5c9; background: #edf3f8; }
+    .d6 .day-circle { border-color: #b8a0c9; background: #f4f0f8; }
+    .d7 .day-circle { border-color: #c9a96e; background: linear-gradient(135deg, #fdf8f0, #f8f0e8); }
+
+    .day-card.done .day-circle { background: var(--sage) !important; border-color: var(--sage) !important; }
+
+    .day-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .d1 .day-label { color: var(--sage); }
+    .d2 .day-label { color: #7a9060; }
+    .d3 .day-label { color: var(--gold); }
+    .d4 .day-label { color: var(--pink-deep); }
+    .d5 .day-label { color: #5a85a0; }
+    .d6 .day-label { color: #7a60a0; }
+    .d7 .day-label { color: var(--gold); }
+
+    .day-card.done .day-label { color: white !important; }
+
+    .day-num {
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .d1 .day-num { color: var(--sage); }
+    .d2 .day-num { color: #7a9060; }
+    .d3 .day-num { color: var(--gold); }
+    .d4 .day-num { color: var(--pink-deep); }
+    .d5 .day-num { color: #5a85a0; }
+    .d6 .day-num { color: #7a60a0; }
+    .d7 .day-num { color: var(--gold); }
+
+    .day-card.done .day-num { color: white !important; }
+
+    .day-header-text { flex: 1; }
+
+    .day-theme {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .day-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .day-toggle {
+      font-size: 18px;
+      color: var(--sage-light);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .day-card.open .day-toggle { transform: rotate(180deg); }
+
+    .done-check {
+      font-size: 20px;
+      flex-shrink: 0;
+      display: none;
+    }
+
+    .day-card.done .done-check { display: block; }
+    .day-card.done .day-toggle { display: none; }
+
+    /* カードボディ */
+    .day-body {
+      display: none;
+      background: white;
+      border-top: 1px solid #f0e8e0;
+    }
+
+    .day-card.open .day-body { display: block; }
+
+    /* 今日の問い */
+    .question-wrap {
+      padding: 22px 22px 0;
+    }
+
+    .q-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--sage);
+      margin-bottom: 12px;
+    }
+
+    .q-main {
+      background: var(--sage-pale);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 18px;
+      border-left: 4px solid var(--sage);
+      position: relative;
+    }
+
+    .q-main::before {
+      content: '❝';
+      font-size: 32px;
+      color: var(--sage-light);
+      position: absolute;
+      top: 10px; left: 14px;
+      line-height: 1;
+      opacity: 0.4;
+    }
+
+    .q-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.8;
+      padding-left: 20px;
+    }
+
+    /* なぜこの問いか */
+    .why-wrap {
+      padding: 0 22px;
+      margin-bottom: 18px;
+    }
+
+    .why-inner {
+      background: var(--warm);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .why-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--brown-light);
+      margin-bottom: 8px;
+    }
+
+    .why-text {
+      font-size: 13px;
+      color: var(--brown);
+      line-height: 1.9;
+    }
+
+    /* ヒント */
+    .hint-wrap {
+      padding: 0 22px;
+      margin-bottom: 18px;
+    }
+
+    .hint-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-light);
+      margin-bottom: 10px;
+    }
+
+    .hint-items {
+      display: grid;
+      gap: 7px;
+    }
+
+    .hint-item {
+      background: #fafafa;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--text-light);
+      line-height: 1.7;
+      border-left: 3px solid var(--sage-light);
+    }
+
+    .hint-item::before { content: '💭 '; }
+
+    /* 書き込みエリア */
+    .write-wrap {
+      padding: 0 22px;
+      margin-bottom: 22px;
+    }
+
+    .write-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-light);
+      margin-bottom: 10px;
+    }
+
+    .journal-paper {
+      background: #fffdf8;
+      border: 1px solid #e8ddd0;
+      border-radius: 14px;
+      padding: 14px;
+      background-image: repeating-linear-gradient(
+        transparent, transparent 31px, #f0e8e0 31px, #f0e8e0 32px
+      );
+      background-size: 100% 32px;
+    }
+
+    .journal-textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 2;
+      resize: none;
+      min-height: 160px;
+      caret-color: var(--sage);
+    }
+
+    .journal-textarea::placeholder {
+      color: #ccc;
+      font-style: italic;
+    }
+
+    .char-count {
+      text-align: right;
+      font-size: 10px;
+      color: #ccc;
+      margin-top: 6px;
+    }
+
+    /* 完了ボタン */
+    .done-btn-wrap {
+      padding: 0 22px 22px;
+    }
+
+    .done-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--sage-light), var(--sage));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 1px;
+    }
+
+    .done-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(124,158,138,0.35);
+    }
+
+    .done-btn.completed {
+      background: #e0e0e0;
+      color: #aaa;
+      cursor: default;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ===== DAY 7 SPECIAL ===== */
+    .day-card.d7 .day-header {
+      background: linear-gradient(135deg, #fdf8f0, #fdf4e8);
+    }
+
+    .day-card.d7.open .day-header {
+      background: linear-gradient(135deg, #f8f2e8, #f5ede0);
+    }
+
+    /* 最終宣言エリア */
+    .declaration-wrap {
+      padding: 0 22px;
+      margin-bottom: 18px;
+    }
+
+    .declaration-box {
+      background: linear-gradient(135deg, #1a1209, #2d1e0a);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .declaration-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .declaration-prefix {
+      font-size: 18px;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .declaration-input {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+      outline: none;
+      caret-color: var(--gold);
+    }
+
+    .declaration-input::placeholder { color: rgba(255,255,255,0.25); }
+
+    .declaration-suffix {
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+      margin-top: 10px;
+    }
+
+    /* ===== COMPLETION ===== */
+    .completion-section {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+
+    .completion-card {
+      background: linear-gradient(160deg, #2d3a2e, #3d4f3e);
+      border-radius: 24px;
+      padding: 36px 24px;
+      text-align: center;
+      display: none;
+      animation: fadeUp 0.6s ease;
+    }
+
+    .completion-card.show { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .completion-emoji { font-size: 52px; margin-bottom: 16px; display: block; }
+
+    .completion-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: white;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .completion-title em { color: var(--sage-light); font-style: italic; }
+
+    .completion-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 2;
+    }
+
+    /* ===== FOOTER ===== */
+    .page-footer {
+      background: var(--warm);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .footer-quote {
+      font-size: 14px;
+      font-style: italic;
+      color: var(--brown-light);
+      line-height: 1.9;
+      margin-bottom: 12px;
+    }
+
+    .footer-copy { font-size: 11px; color: #c4b49a; }
+
+    /* ===== QUOTE CARD ===== */
+    .quote-card {
+      background: var(--warm);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 0 22px 22px;
+      text-align: center;
+    }
+
+    .quote-text {
+      font-size: 13px;
+      font-style: italic;
+      color: var(--brown-light);
+      line-height: 1.9;
+    }
+
+    .quote-author {
+      font-size: 10px;
+      color: #bbb;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-texture"></div>
+  <div class="leaf-deco">🌿</div>
+  <div class="leaf-deco2">🌱</div>
+
+  <div class="cover-badge">✦ 無料プレゼント ✦</div>
+  <div class="cover-days">7</div>
+  <div class="cover-h1">内面から変わる・7日間プログラム</div>
+  <h1 class="cover-h2">セルフイメージ<br><em>更新</em>ワーク</h1>
+  <p class="cover-sub">
+    毎日1つの問いに答えるだけ。<br>
+    7日後、あなたの「自分への見方」が<br>
+    静かに、確実に変わっていきます。
+  </p>
+  <a href="#start" class="cover-cta">▼ ワークを始める</a>
+</div>
+
+<!-- HOW TO -->
+<div class="howto-section" id="start">
+  <div class="howto-inner">
+    <div class="howto-tag">ABOUT THIS WORK</div>
+    <div class="howto-title">このワークでできること</div>
+    <p class="howto-desc">
+      「追われる女」になるための土台は、テクニックではなく<strong>「自分を信じられるかどうか」</strong>にあります。<br><br>
+      このワークは毎日1つの問いに答えることで、<strong>自分へのネガティブなイメージを書き換えていく7日間のプログラム</strong>です。特別なことは何もいりません。正直に書くだけでいい。
+    </p>
+    <div class="howto-rules">
+      <div class="howto-rule">
+        <div class="rule-num">1</div>
+        <div class="rule-text"><strong>毎日1日ずつ</strong>取り組んでください。まとめてやると効果が薄れます。</div>
+      </div>
+      <div class="howto-rule">
+        <div class="rule-num">2</div>
+        <div class="rule-text"><strong>正解はありません。</strong>「こう書かなきゃ」と考えず、思ったことをそのまま書いてください。</div>
+      </div>
+      <div class="howto-rule">
+        <div class="rule-num">3</div>
+        <div class="rule-text"><strong>誰にも見せなくていい。</strong>これはあなただけのノートです。</div>
+      </div>
+      <div class="howto-rule">
+        <div class="rule-num">4</div>
+        <div class="rule-text"><strong>完璧を目指さない。</strong>3行でも5行でも、書けた分だけで十分です。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-section">
+  <div class="progress-inner">
+    <div class="progress-label">YOUR PROGRESS</div>
+    <div class="day-dots" id="day-dots"></div>
+    <div class="progress-text" id="progress-text">まだ始まっていません。DAY 1から始めましょう。</div>
+  </div>
+</div>
+
+<!-- DAYS -->
+<div class="days-section" id="days-wrap"></div>
+
+<!-- COMPLETION -->
+<div class="completion-section">
+  <div class="completion-card" id="completion-card">
+    <span class="completion-emoji">🌿</span>
+    <div class="completion-title">7日間、<em>お疲れ様でした。</em></div>
+    <p class="completion-text">
+      毎日自分と向き合い続けたあなたへ。<br><br>
+      このワークを終えた今、あなたが書いた言葉の中に<br>
+      「新しい自分」のヒントが全部あります。<br><br>
+      焦らなくていい。すぐに変わらなくてもいい。<br>
+      でも7日前のあなたと、今日のあなたは<br>
+      もう少しだけ違うはずです。<br><br>
+      自分を信じることが、すべての始まりです。
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <p class="footer-quote">
+    「自分を愛することは、<br>
+    生涯をかけるロマンスの始まりだ」
+  </p>
+  <p class="footer-copy">© みい モテ育成 ｜ 無断転載禁止</p>
+</div>
+
+<script>
+const days = [
+  {
+    theme: "DAY 1 ・ 自分を知る",
+    title: "「本当の自分」と出会い直す",
+    color: "d1",
+    quote: { text: "あなたは、誰かに見られていないとき、どんな顔をしていますか？", author: "" },
+    question: "誰にも見られていないとき、あなたは何をしているときが一番「楽しい」「心地よい」と感じますか？",
+    why: "恋愛で自信を持てない多くの女性は、「誰かに見られているときの自分」だけを「本当の自分」だと思っています。でも、一人のときに心が動く瞬間に、あなたの本当の魅力が隠れています。今日は、その「一人のときの自分」に光を当てます。",
+    hints: [
+      "一人でいるときに夢中になること（映画・読書・料理・散歩…なんでも）",
+      "誰かに話したら「意外！」と言われそうなこと",
+      "子どもの頃に好きだったこと・得意だったこと"
+    ],
+    placeholder: "例：一人でいるとき、音楽をかけながら部屋の模様替えをするのが好き。誰にも言ったことないけど、インテリアを考えているときが一番集中できる…"
+  },
+  {
+    theme: "DAY 2 ・ 過去を労う",
+    title: "これまでの自分を「ちゃんと認める」",
+    color: "d2",
+    quote: { text: "頑張ってきたことに、ちゃんと気づいてあげてほしい。", author: "" },
+    question: "これまでの人生で、一番頑張ったこと・乗り越えたことは何ですか？当時の自分に、今の言葉で声をかけるとしたら何と言いますか？",
+    why: "自己肯定感が低い人の多くは、「うまくいったこと」より「うまくいかなかったこと」を記憶に残す癖があります。今日は逆に、過去の自分が頑張ってきた事実にフォーカスします。他人ではなく、あなた自身があなたの一番の応援者になるための練習です。",
+    hints: [
+      "受験・就職・仕事・人間関係で乗り越えたこと",
+      "誰にも言えずに一人で抱えていたこと",
+      "当時の自分に「よくやったね」と言いたいこと"
+    ],
+    placeholder: "例：高校のとき、友達がいなくて毎日一人でお昼を食べてた。でも勉強だけは続けた。当時の自分に言うなら…「ちゃんとそれが今のあなたを作ってるよ」って伝えたい"
+  },
+  {
+    theme: "DAY 3 ・ 強みを見つける",
+    title: "「ありがとう」の中に隠れている私",
+    color: "d3",
+    quote: { text: "あなたが自然にやっていることが、誰かにとっての特別です。", author: "" },
+    question: "友達・家族・職場の人から「ありがとう」「助かった」「さすがだね」と言われた経験を3つ思い出して書いてください。その3つに共通していることは何ですか？",
+    why: "自分の強みは、「当たり前すぎて」自分では気づきにくいものです。でも「ありがとう」をもらった瞬間には、必ずあなたの強みが現れています。今日は、他者からの言葉を通じて、自分の中にある価値を見つけます。",
+    hints: [
+      "「気が利く」「話しやすい」「頼りになる」など言われたこと",
+      "困っている人を助けて感謝されたこと",
+      "「それ得意だよね」と言われた経験"
+    ],
+    placeholder: "例：①友達に「いつも話聞いてくれてありがとう」と言われた ②職場で「資料わかりやすい！」と言われた ③妹に「一緒にいると安心する」と言われた。共通点…人を安心させることが得意なのかも"
+  },
+  {
+    theme: "DAY 4 ・ 比較をやめる",
+    title: "「羨ましい」を武器に変える",
+    color: "d4",
+    quote: { text: "比べることをやめたとき、自分の花が咲き始めます。", author: "" },
+    question: "最近「いいな…」と羨ましく思った人のことを書いてください。その人があなたに「持っていないもの」を、1つだけ正直に書いてみてください。",
+    why: "「羨ましい」という感情は、消そうとするほど大きくなります。今日はその感情を消すのではなく「観察する」練習をします。そして、あなたが持っていてその人が持っていないものを見つけることで、比較を「平等な視点」に変えていきます。",
+    hints: [
+      "容姿・彼氏・仕事・友達など、どんな羨ましさでもOK",
+      "その人が「ないもの」はどんな小さなことでもいい",
+      "あなたが持っているものに、「当たり前」はありますか？"
+    ],
+    placeholder: "例：彼氏がいる友達が羨ましい。でも…私のほうが仕事は楽しいし、一人の時間を大切にできてる。あの子は仕事が嫌いだって言ってたな。どっちがいいとかじゃないか。"
+  },
+  {
+    theme: "DAY 5 ・ 未来を描く",
+    title: "1年後の「最高の自分」の一日",
+    color: "d5",
+    quote: { text: "具体的に描けるビジョンだけが、現実になります。", author: "" },
+    question: "1年後、あなたが「最高の状態」にいるとしたら、どんな一日を過ごしていますか？朝目覚めてから夜寝るまでを、できるだけ具体的に書いてください。",
+    why: "「なりたい自分」をぼんやり思い描くのと、具体的に言語化するのは全く違います。脳は具体的なイメージを「現実に近いもの」として処理します。今日は最高の未来を細かく書き出すことで、そのセルフイメージに近づく行動が自然に生まれてきます。",
+    hints: [
+      "何時に起きる？朝ごはんは？どんな服を着ている？",
+      "仕事は？恋愛は？友達との関係は？",
+      "夜、鏡を見たときどんな顔をしている？"
+    ],
+    placeholder: "例：朝7時に自然に目覚める。好きな香りのコーヒーを淹れながら30分読書する。好きな仕事をしていて、夜は好きな人と笑いながらご飯を食べている。鏡を見たとき、表情が柔らかくなってる自分がいる…"
+  },
+  {
+    theme: "DAY 6 ・ 言葉を変える",
+    title: "自分への「言葉」を、親友への言葉に変える",
+    color: "d6",
+    quote: { text: "自分に優しくすることは、弱さではなく、強さです。", author: "" },
+    question: "最近、自分に言った「ひどい言葉」を1つ正直に書いてください。次に、その言葉を大切な親友が泣きながら自分に言っていたら、あなたはなんと返しますか？最後に、今度は自分にその言葉をかけてみてください。",
+    why: "「どうせ私なんか」「なんでこんなこともできないの」…自分への言葉が一番厳しい人ほど、恋愛で傷つきやすく、追いかけてしまいます。今日は「自分への言葉」を変える練習をします。親友に言うような優しさを、まず自分に向けることから始めます。",
+    hints: [
+      "「また失敗した」「私って本当にダメ」など、口にしたこと",
+      "もし大切な友達が同じことを言っていたら、どう声をかける？",
+      "その同じ言葉を、今日の自分に言ってみる"
+    ],
+    placeholder: "例：「また彼に連絡しちゃった。ほんと意志が弱い」って思った。もし友達が言ってたら…「それだけ好きなんだよ。意志が弱いんじゃなくて、感情が豊かなんだよ」って言う。じゃあ自分にも…そう言ってあげよう。"
+  },
+  {
+    theme: "DAY 7 ・ 新しい自分宣言",
+    title: "「私は〇〇な女性」を書く",
+    color: "d7",
+    quote: { text: "言葉は、あなたが思う以上に現実を作る力を持っています。", author: "" },
+    question: "この7日間で気づいたこと・手放したいこと・大切にしたいことを3つ書いてください。最後に「私は〇〇な女性だ」という文章を完成させてください。",
+    why: "7日間、あなたは自分と向き合ってきました。気づきを「言葉にして宣言すること」が最後のステップです。宣言した言葉は、あなたの脳が新しいセルフイメージとして記憶します。完璧な言葉じゃなくていい。今この瞬間の「なりたい自分」を書いてください。",
+    hints: [
+      "この7日間で一番「なるほど」と思った気づきは？",
+      "やめたい習慣・手放したい思い込みは？",
+      "「私は〇〇な女性だ」…どんな言葉でも、正解です"
+    ],
+    placeholder: "例：①気づき：自分の強みを「当たり前」だと思っていた ②手放したい：他人と比べること ③大切にしたい：一人の時間も好きな自分を認めること。宣言：「私は、自分の感性を大切にできる、愛される価値がある女性だ」"
+  }
+];
+
+const doneState = new Array(7).fill(false);
+
+function renderDots() {
+  const wrap = document.getElementById('day-dots');
+  wrap.innerHTML = '';
+  days.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'day-dot' + (doneState[i] ? ' done' : '');
+    dot.onclick = () => {
+      document.getElementById(`day-${i}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    wrap.appendChild(dot);
+  });
+  const done = doneState.filter(Boolean).length;
+  const textEl = document.getElementById('progress-text');
+  if (done === 0) textEl.textContent = 'まだ始まっていません。DAY 1から始めましょう。';
+  else if (done === 7) textEl.textContent = '🎉 全7日間完了！お疲れ様でした。';
+  else textEl.textContent = `${done} / 7日 完了。順調です。このまま続けてください。`;
+  if (done === 7) document.getElementById('completion-card').classList.add('show');
+}
+
+function renderDays() {
+  const wrap = document.getElementById('days-wrap');
+
+  days.forEach((day, i) => {
+    const card = document.createElement('div');
+    card.className = `day-card ${day.color}`;
+    card.id = `day-${i}`;
+
+    let extraBody = '';
+    if (i === 6) {
+      // Day 7 special declaration
+      extraBody = `
+        <div class="declaration-wrap">
+          <div class="declaration-box">
+            <div class="declaration-tag">✦ 7日間の宣言</div>
+            <div class="declaration-prefix">「私は</div>
+            <input type="text" class="declaration-input" id="declaration-${i}" placeholder="あなたの言葉を書いてください" />
+            <div class="declaration-suffix">な女性だ」</div>
+          </div>
+        </div>
+      `;
+    }
+
+    card.innerHTML = `
+      <div class="day-header" onclick="toggleDay(${i})">
+        <div class="day-circle">
+          <div class="day-label">DAY</div>
+          <div class="day-num">${i + 1}</div>
+        </div>
+        <div class="day-header-text">
+          <div class="day-theme">${day.theme}</div>
+          <div class="day-title">${day.title}</div>
+        </div>
+        <div class="done-check">✅</div>
+        <div class="day-toggle">▼</div>
+      </div>
+      <div class="day-body">
+        <div class="question-wrap">
+          <div class="q-tag">TODAY'S QUESTION</div>
+          <div class="q-main">
+            <div class="q-text">${day.question}</div>
+          </div>
+        </div>
+        <div class="why-wrap">
+          <div class="why-inner">
+            <div class="why-tag">💡 なぜこの問いか</div>
+            <div class="why-text">${day.why}</div>
+          </div>
+        </div>
+        <div class="hint-wrap">
+          <div class="hint-tag">✏ 書き出すヒント</div>
+          <div class="hint-items">
+            ${day.hints.map(h => `<div class="hint-item">${h}</div>`).join('')}
+          </div>
+        </div>
+        <div class="write-wrap">
+          <div class="write-tag">📝 ここに書いてみる</div>
+          <div class="journal-paper">
+            <textarea class="journal-textarea" id="text-${i}" placeholder="${day.placeholder}" oninput="updateChar(${i})" rows="5"></textarea>
+            <div class="char-count" id="char-${i}">0文字</div>
+          </div>
+        </div>
+        ${extraBody}
+        <div class="quote-card">
+          <div class="quote-text">「${day.quote.text}」</div>
+        </div>
+        <div class="done-btn-wrap">
+          <button class="done-btn" id="btn-${i}" onclick="markDone(${i})">
+            ✓ DAY ${i + 1} 完了
+          </button>
+        </div>
+      </div>
+    `;
+
+    wrap.appendChild(card);
+  });
+}
+
+function toggleDay(i) {
+  const card = document.getElementById(`day-${i}`);
+  card.classList.toggle('open');
+}
+
+function updateChar(i) {
+  const ta = document.getElementById(`text-${i}`);
+  document.getElementById(`char-${i}`).textContent = ta.value.length + '文字';
+}
+
+function markDone(i) {
+  if (doneState[i]) return;
+  const text = document.getElementById(`text-${i}`).value.trim();
+  if (text.length < 5) {
+    document.getElementById(`text-${i}`).style.borderColor = '#ef9a9a';
+    document.getElementById(`text-${i}`).placeholder = '少しだけ書いてみてから完了にしましょう 💚';
+    return;
+  }
+  doneState[i] = true;
+  const card = document.getElementById(`day-${i}`);
+  card.classList.add('done');
+  card.classList.remove('open');
+  const btn = document.getElementById(`btn-${i}`);
+  btn.textContent = '✓ 完了済み';
+  btn.classList.add('completed');
+  renderDots();
+  // 次の日を自動で開く
+  if (i < 6) {
+    setTimeout(() => {
+      const next = document.getElementById(`day-${i+1}`);
+      next.classList.add('open');
+      next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 600);
+  }
+}
+
+renderDays();
+renderDots();
+</script>
+</body>
+</html>
